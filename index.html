@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="브라우저에 안전하게 저장되는 심플한 투두리스트">
+  <meta name="theme-color" content="#6d5dfc">
+  <title>오늘의 할 일</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="orb orb-one" aria-hidden="true"></div>
+  <div class="orb orb-two" aria-hidden="true"></div>
+
+  <main class="app" aria-labelledby="page-title">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">MY TODO</p>
+        <h1 id="page-title">오늘의 할 일</h1>
+        <p id="current-date" class="date"></p>
+      </div>
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="27" height="27" fill="none">
+          <path d="m7 12 3 3 7-7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </header>
+
+    <section class="progress-card" aria-label="진행률">
+      <div class="progress-copy">
+        <span id="progress-label">아직 할 일이 없어요</span>
+        <strong id="progress-percent">0%</strong>
+      </div>
+      <div id="progress-track" class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <span id="progress-bar"></span>
+      </div>
+    </section>
+
+    <form id="todo-form" class="todo-form">
+      <label class="sr-only" for="todo-input">새로운 할 일</label>
+      <input id="todo-input" name="todo" type="text" maxlength="120" placeholder="무엇을 해야 하나요?" autocomplete="off" required>
+      <button class="add-button" type="submit" aria-label="할 일 추가">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true">
+          <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+        <span>추가</span>
+      </button>
+    </form>
+
+    <div class="toolbar">
+      <div class="filters" role="tablist" aria-label="할 일 필터">
+        <button type="button" role="tab" data-filter="all" aria-selected="true">전체 <span id="all-count">0</span></button>
+        <button type="button" role="tab" data-filter="active" aria-selected="false">진행 중</button>
+        <button type="button" role="tab" data-filter="completed" aria-selected="false">완료</button>
+      </div>
+    </div>
+
+    <section class="list-section" aria-label="할 일 목록">
+      <ul id="todo-list" class="todo-list"></ul>
+      <div id="empty-state" class="empty-state">
+        <div class="empty-icon" aria-hidden="true">✓</div>
+        <strong id="empty-title">할 일을 추가해 보세요</strong>
+        <p id="empty-description">작은 계획부터 가볍게 시작해요.</p>
+      </div>
+    </section>
+
+    <footer class="app-footer">
+      <p><strong id="remaining-count">0</strong>개 남음</p>
+      <button id="clear-completed" class="clear-button" type="button" disabled>완료 항목 지우기</button>
+    </footer>
+  </main>
+
+  <p id="status-message" class="sr-only" role="status" aria-live="polite"></p>
+  <noscript>이 앱을 사용하려면 JavaScript를 활성화해 주세요.</noscript>
+</body>
+</html>
